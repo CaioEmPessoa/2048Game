@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'splatfont_2regular';
+    src: url('splatfont2-webfont.woff2') format('woff2'),
+         url('splatfont2-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    font-family: "splatfont_2regular"!important;
+}
+
+.header {
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    margin-right: 5%;
+    margin-left: 5%;
+    color:white;
+    
+    .title {
+        text-align: center;
+        font-size:40px;
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+
+    .scores {
+        display: flex;
+        position: absolute;
+        right:0;
+        top:0;
+        margin-right: 5%;
+        font-size: 20px;
+
+        .current {
+            position:relative;
+            right:30px;
+            text-align: center;
+        }
+        
+        .best {
+            position:relative;
+            text-align: center;
+        }
+
+    }
+
+}
+
+.game {
+    display: flex;
+    padding:5px;
+    margin: auto;
+    margin-top:30px!important;
+    width: 415px;
+    border: solid black 5px;
+    border-radius: 8px;
+    background-color: violet;
+    
+    .square {
+        height: 80px;
+        width: 80px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 60px;
+        margin:10px;
+        border: solid black 4px;
+        border-radius: 10px;
+        background-color: blueviolet;
+    }
+
+}
+
+.tutorial {
+    color:white;
+    margin:7%;
+    text-wrap: pretty;
+}
+    
