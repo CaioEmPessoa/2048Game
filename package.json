@@ -1,5 +1,5 @@
 {
-  "name": "electron-test",
+  "name": "2048-game",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
