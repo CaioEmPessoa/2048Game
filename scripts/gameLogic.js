@@ -48,16 +48,6 @@ class Game {
     }
 }
 
-
 game = new Game();
-game.startValues()
-game.addNumb()
-game.addNumb()
-game.addNumb()
-game.addNumb()
-game.addNumb()
-game.showTable()
-game.moveUp()
-game.showTable()
 
 module.exports = game
