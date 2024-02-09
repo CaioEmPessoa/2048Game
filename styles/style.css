@@ -64,9 +64,26 @@ body {
   margin: 10px;
   border: solid black 4px;
   border-radius: 10px;
-  background-color: blueviolet;
   color: white;
   font-size: 25px;
+}
+.game .tier-zero {
+  background-color: blueviolet;
+}
+.game .tier-one {
+  background-color: orange;
+}
+.game .tier-two {
+  background-color: blue;
+}
+.game .tier-three {
+  background-color: pink;
+}
+.game .tier-four {
+  background-color: chocolate;
+}
+.game .tier-five {
+  background-color: gray;
 }
 
 .tutorial {

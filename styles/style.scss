@@ -73,9 +73,27 @@ body {
         margin:10px;
         border: solid black 4px;
         border-radius: 10px;
-        background-color: blueviolet;
         color: white;
-        font-size: 25px;
+        font-size: 25px;        
+    }
+
+    .tier-zero {
+        background-color: blueviolet;
+    }
+    .tier-one {
+        background-color: orange;
+    }
+    .tier-two {
+        background-color: blue;
+    }
+    .tier-three {
+        background-color: pink;
+    }
+    .tier-four {
+        background-color: chocolate;
+    }
+    .tier-five {
+        background-color: gray;
     }
 
 }
