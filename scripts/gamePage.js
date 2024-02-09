@@ -14,10 +14,13 @@ const generateBoard = () => {
 }
 
 const updateBoard = () => {
+    console.log(gameLogic.gameTable)
     for(let x = 0; x < 4; x++) {
         for(let y = 0; y < 4; y++){
             if (gameLogic.gameTable[x][y] != 0){
-                document.getElementById(`square${y}${x}`).innerHTML = gameLogic.gameTable[x][y]
+                document.getElementById(`square${x}${y}`).innerHTML = gameLogic.gameTable[x][y]
+            } else {
+                document.getElementById(`square${x}${y}`).innerHTML = ""
             }
         }
     }
@@ -25,25 +28,33 @@ const updateBoard = () => {
 
 document.onkeydown = (e) => {
     switch (e.key){
-        case "ArrowDown":
-            alert('ArrowDown!');
-            break
-            
-            case "ArrowUp":
-            alert('ArrowUp!');
+        case "ArrowUp":
+            gameLogic.moveTiles("n")
+            gameLogic.addNumb()
+            updateBoard()
             break
 
-        case "ArrowRight":
-            alert('ArrowRight!');
+        case "ArrowDown":
+            gameLogic.moveTiles("s")
+            gameLogic.addNumb()
+            updateBoard()
             break
 
         case "ArrowLeft":
-            alert('ArrowLeft!');
+            gameLogic.moveTiles("w")
+            gameLogic.addNumb()
+            updateBoard()
             break
+
+        case "ArrowRight":
+            gameLogic.moveTiles("e")
+            gameLogic.addNumb()
+            updateBoard()
+            break
+
 
     }
 }
-
 
 generateBoard()
 updateBoard()
