@@ -45,7 +45,7 @@ class Game {
                 
             case "w":
                 this.rowLimit = "None"
-                this.colLimit = 0
+                this.colLimit = "None" // i'm pretty sure it has to have a limit but it doesn't works with one ...
                 this.rowDir = 0
                 this.colDir = -1
                 this.dir = "w"
@@ -60,22 +60,28 @@ class Game {
                 break
         }
 
-        this.gameTable.forEach(row => {
-            row.forEach(col => {
-                const rowNumb = this.gameTable.indexOf(row);
-                const colNumb = this.gameTable[rowNumb].indexOf(col);
+        for (let row = 0; row < 4; row++) {
+            for (let col = 0; col < 4; col++) {
+                if (row == this.rowLimit || col == this.colLimit ) {
+                    break
+                }
                 
-                if (this.gameTable[rowNumb][colNumb] != 0 // if tile isn't empty
-                    && rowNumb != this.rowLimit // V
-                    && colNumb != this.colLimit // distance limit
-                    && this.gameTable[rowNumb+(this.rowDir)][colNumb+(this.colDir)] == 0 // the next tile is empty  
-                    ) {
-                    this.gameTable[rowNumb+(this.rowDir)][colNumb+(this.colDir)] = this.gameTable[rowNumb][colNumb];
-                    this.gameTable[rowNumb][colNumb] = 0;
+                const currentTile = this.gameTable[row][col]
+                const nextTile = this.gameTable[row+(this.rowDir)][col+(this.colDir)]
+        
+                if (currentTile != 0 && nextTile == 0) {
+                    this.gameTable[row+(this.rowDir)][col+(this.colDir)] = currentTile;
+                    this.gameTable[row][col] = 0;
+                    this.moveTiles(this.dir);
+                } 
+                else if (nextTile == currentTile && currentTile!=0) {
+                    this.gameTable[row+(this.rowDir)][col+(this.colDir)] = nextTile+currentTile;
+                    this.gameTable[row][col] = 0;
                     this.moveTiles(this.dir);
                 }
-            });
-        });
+            }
+            
+        }
     }
     
 
