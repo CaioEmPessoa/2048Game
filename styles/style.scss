@@ -26,9 +26,10 @@ body {
     
     .title {
         text-align: center;
-        font-size:40px;
-        margin-left: 5%;
-        margin-top: 1%;
+        font-size:60px;
+        margin-left: 10%;
+        margin-top: 6%;
+        margin-bottom: 0px;
     }
 
     .scores {
@@ -37,17 +38,24 @@ body {
         right:0;
         top:0;
         margin-right: 5%;
-        font-size: 20px;
+        font-size: 19px;
 
-        .current {
+        .category {
             position:relative;
-            right:30px;
+            text-align: center;
+            right:35px;
+            top:-25px;
+
+        }
+
+        .header {
+            position:relative;
             text-align: center;
         }
-        
-        .best {
-            position:relative;
-            text-align: center;
+
+        .numbers {
+            position: relative;
+            top:-15px;
         }
 
     }
@@ -58,7 +66,7 @@ body {
     display: flex;
     padding:5px;
     margin: auto;
-    margin-top:30px!important;
+    margin-top:40px!important;
     width: 415px;
     border: solid black 5px;
     border-radius: 8px;

@@ -13,18 +13,40 @@
             <h1 class="title">2048</h1>
             <div class="scores">
                 
-                <div class="current">
-                    
-                    <p>Current:</p>
-                    <p id="currentScore">0</p>
-                    
-                </div>
-                
-                <div class="best">
-                    <p>Best:</p>
-                    <p id="bestScore">0</p>
+                <table>
+                    <tr>
+                        <td class="category"></td>
+                        <td class="header" style="right: 30px;">
+                            <p>Current:</p>
+                        </td>
 
-                </div>
+                        <td>
+                            <p>Best:</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="category">
+                            Score:
+                        </td>
+                        <td class="numbers">
+                            <p id="currentScore">0</p>
+                        </td>
+                        <td class="numbers">
+                            <p id="bestScore">0</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="category">
+                            Tile:
+                        </td>
+                        <td class="numbers">
+                            <p id="currentTile">0</p>
+                        </td>
+                        <td class="numbers">
+                            <p id="bestTile">0</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 

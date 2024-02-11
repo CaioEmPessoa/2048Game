@@ -23,9 +23,10 @@ body {
 }
 .header .title {
   text-align: center;
-  font-size: 40px;
-  margin-left: 5%;
-  margin-top: 1%;
+  font-size: 60px;
+  margin-left: 10%;
+  margin-top: 6%;
+  margin-bottom: 0px;
 }
 .header .scores {
   display: flex;
@@ -33,23 +34,28 @@ body {
   right: 0;
   top: 0;
   margin-right: 5%;
-  font-size: 20px;
+  font-size: 19px;
 }
-.header .scores .current {
-  position: relative;
-  right: 30px;
-  text-align: center;
-}
-.header .scores .best {
+.header .scores .category {
   position: relative;
   text-align: center;
+  right: 35px;
+  top: -25px;
+}
+.header .scores .header {
+  position: relative;
+  text-align: center;
+}
+.header .scores .numbers {
+  position: relative;
+  top: -15px;
 }
 
 .game {
   display: flex;
   padding: 5px;
   margin: auto;
-  margin-top: 30px !important;
+  margin-top: 40px !important;
   width: 415px;
   border: solid black 5px;
   border-radius: 8px;
