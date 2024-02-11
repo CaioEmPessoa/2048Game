@@ -1,4 +1,32 @@
+const fs = require("fs");
 class Game {
+    saveProgress = () => {
+        // i am lazy and should just do a json as a save but wtv
+        if (this.score > this.highScore) {
+            // saving just the high score, maintaning biggest tile
+            fs.writeFile(__dirname+"/../save.txt", this.score+","+this.highTile, (err) => {})
+
+        }
+        if (this.bigTile > this.highTile){
+            // saving just the biggest tile, maitaning high score
+            fs.writeFile(__dirname+"/../save.txt", this.highScore+","+this.bigTile, (err) => {})
+        }
+    }
+
+    readProgress = function() {
+        fs.readFile(__dirname+"/../save.txt", (err, data) => {
+            if (err) {
+                this.highScore = 0;
+                this.highTile = 0;
+              return
+            }
+            data = data.toString() // convert buffer to string
+            const saveData = data.split(",")
+            this.highScore = saveData[0]
+            this.highTile = saveData[1]
+        })
+    }
+
     startValues = () => {
         this.gameTable = [
             [0, 0, 0, 0],
@@ -8,6 +36,12 @@ class Game {
         ];
 
         this.numbOptions = [2, 2, 2, 4];
+        
+        this.readProgress()
+
+        this.score = 0;
+        this.bigTile = 0;
+        
     }
     
     addNumb = () => {
@@ -24,7 +58,7 @@ class Game {
         }
 
     }
-    
+
     moveTiles = (nswe) => {
         switch (nswe) {
             case "n":
@@ -75,10 +109,17 @@ class Game {
                     this.moveTiles(this.dir);
                 } 
                 else if (nextTile == currentTile && currentTile!=0) {
-                    this.gameTable[row+(this.rowDir)][col+(this.colDir)] = nextTile+currentTile;
+                    const newNumb = nextTile+currentTile;
+                    this.gameTable[row+(this.rowDir)][col+(this.colDir)] = newNumb;
                     this.gameTable[row][col] = 0;
                     this.moveTiles(this.dir);
+                    this.score += newNumb
+                    if (newNumb > this.bigTile) {
+                        this.bigTile = newNumb
+                    }
                 }
+
+                this.saveProgress()
             }
             
         }

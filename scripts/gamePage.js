@@ -2,6 +2,8 @@
 const gameLogic = require(__dirname+"/gameLogic.js")
 
 gameLogic.startValues()
+gameLogic.readProgress()
+gameLogic.addNumb()
 gameLogic.addNumb()
 
 const generateBoard = () => {
@@ -23,7 +25,12 @@ const tierDict = {
 }
 
 const updateBoard = () => {
-    console.log(gameLogic.gameTable)
+    document.getElementById("currentScore").innerHTML = gameLogic.score;
+    document.getElementById("currentTile").innerHTML = gameLogic.bigTile;
+    
+    document.getElementById("bestScore").innerHTML = gameLogic.highScore;
+    document.getElementById("bestTile").innerHTML = gameLogic.highTile;
+
     for(let x = 0; x < 4; x++) {
         for(let y = 0; y < 4; y++){
 
