@@ -1,3 +1,4 @@
+const { log } = require("console");
 const fs = require("fs");
 class Game {
     saveProgress = () => {
@@ -45,10 +46,15 @@ class Game {
     }
     
     addNumb = () => {
+        if (!this.checkPossible()){
+            console.log("game over!")
+            return
+        }
+
         const rowNumb = Math.floor(Math.random() * 4);
         const colNumb = Math.floor(Math.random() * 4);
         const numb = Math.floor(Math.random() * 4);
-
+        
         let addPlace = this.gameTable[rowNumb][colNumb];
 
         if (addPlace==0) {
@@ -57,6 +63,35 @@ class Game {
             this.addNumb();
         }
 
+    }
+
+    checkPossible = () => {
+        // remake this
+        for (let i = 0; i < this.gameTable.length; i++) {
+            for (let j = 0; j < this.gameTable[i].length - 1; j++) {
+                if (this.gameTable[i][j] === this.gameTable[i][j + 1]) {
+                    return true; // Pair found horizontally
+                }
+            }
+        }
+        
+        // Check vertically
+        for (let j = 0; j < this.gameTable[0].length; j++) {
+            for (let i = 0; i < this.gameTable.length - 1; i++) {
+                if (this.gameTable[i][j] === this.gameTable[i + 1][j]) {
+                    return true; // Pair found vertically
+                }
+            }
+        }
+
+        for (let t = 0; t < this.gameTable.length; t++) {
+            if (this.gameTable[t].includes(0)) {
+                return true
+            }
+        }
+
+        return false; // No pair found
+    
     }
 
     moveTiles = (nswe) => {
