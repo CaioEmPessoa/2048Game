@@ -55,6 +55,12 @@ const updateBoard = () => {
 }
 
 document.onkeydown = (e) => {
+    if (!gameLogic.checkPossible()){
+        console.log("game over!")
+        document.getElementById("gameOver").style.display = "block"
+        return
+    }
+
     switch (e.key){
         case "ArrowUp":
             gameLogic.moveTiles("n")

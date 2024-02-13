@@ -61,6 +61,23 @@ body {
   border-radius: 8px;
   background-color: violet;
 }
+.game .gameover {
+  display: none;
+  position: fixed;
+  width: 190px;
+  height: 150px;
+  margin: 100px;
+  padding: 5px;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  border: 3px solid #f1f1f1;
+  background-color: rgba(151, 28, 189, 0.537254902);
+}
+.game .gameover .try-again {
+  bottom: 0;
+  font-size: 20px;
+}
 .game .square {
   height: 80px;
   width: 80px;

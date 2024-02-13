@@ -46,10 +46,6 @@ class Game {
     }
     
     addNumb = () => {
-        if (!this.checkPossible()){
-            console.log("game over!")
-            return
-        }
 
         const rowNumb = Math.floor(Math.random() * 4);
         const colNumb = Math.floor(Math.random() * 4);
