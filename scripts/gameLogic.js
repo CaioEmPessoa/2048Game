@@ -14,7 +14,7 @@ class Game {
         }
     }
 
-    readProgress = function() {
+    readProgress = (callback) => {
         fs.readFile(__dirname+"/../save.txt", (err, data) => {
             if (err) {
                 this.highScore = 0;
@@ -25,6 +25,7 @@ class Game {
             const saveData = data.split(",")
             this.highScore = saveData[0]
             this.highTile = saveData[1]
+            callback()
         })
     }
 
@@ -37,8 +38,6 @@ class Game {
         ];
 
         this.numbOptions = [2, 2, 2, 4];
-        
-        this.readProgress()
 
         this.score = 0;
         this.bigTile = 0;
