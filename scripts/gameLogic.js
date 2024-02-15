@@ -1,17 +1,24 @@
 const { log } = require("console");
 const fs = require("fs");
 class Game {
-    saveProgress = () => {
+    saveProgress = (callback) => {
         // i am lazy and should just do a json as a save but wtv
-        if (this.score > this.highScore) {
-            // saving just the high score, maintaning biggest tile
-            fs.writeFile(__dirname+"/../save.txt", this.score+","+this.highTile, (err) => {})
 
+        if (this.score > this.highScore && this.bigTile > this.highTile) {
+            fs.writeFile(__dirname+"/../save.txt", this.score+","+this.bigTile, (err) => {})
+        } else {
+            if (this.score > this.highScore) {
+                // saving just the high score, maintaning biggest tile
+                fs.writeFile(__dirname+"/../save.txt", this.score+","+this.highTile, (err) => {})
+    
+            }
+            if (this.bigTile > this.highTile){
+                // saving just the biggest tile, maitaning high score
+                fs.writeFile(__dirname+"/../save.txt", this.highScore+","+this.bigTile, (err) => {})
+            }
         }
-        if (this.bigTile > this.highTile){
-            // saving just the biggest tile, maitaning high score
-            fs.writeFile(__dirname+"/../save.txt", this.highScore+","+this.bigTile, (err) => {})
-        }
+
+        callback()
     }
 
     readProgress = (callback) => {
@@ -19,6 +26,7 @@ class Game {
             if (err) {
                 this.highScore = 0;
                 this.highTile = 0;
+                callback()
               return
             }
             data = data.toString() // convert buffer to string
@@ -41,7 +49,8 @@ class Game {
 
         this.score = 0;
         this.bigTile = 0;
-        
+
+        this.win = false
     }
     
     addNumb = () => {
@@ -140,6 +149,9 @@ class Game {
                 } 
                 else if (nextTile == currentTile && currentTile!=0) {
                     const newNumb = nextTile+currentTile;
+                    if (newNumb == 2048) {
+                        this.win = true
+                    }
                     this.gameTable[row+(this.rowDir)][col+(this.colDir)] = newNumb;
                     this.gameTable[row][col] = 0;
                     this.moveTiles(this.dir);
@@ -148,8 +160,7 @@ class Game {
                         this.bigTile = newNumb
                     }
                 }
-
-                this.saveProgress()
+                
             }
             
         }

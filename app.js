@@ -6,7 +6,7 @@ app.on('ready', () => {
     height: 900,
     /* for testing
     width: 550, 
-    height: 750,
+    height: 780,
     */
     webPreferences: {
       nodeIntegration: true,

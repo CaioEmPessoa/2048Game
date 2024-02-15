@@ -1,10 +1,14 @@
 // here will have html - js communication
 const gameLogic = require(__dirname+"/gameLogic.js")
 
-gameLogic.startValues()
-gameLogic.readProgress()
-gameLogic.addNumb()
-gameLogic.addNumb()
+const tierDict = {
+    2:"one", 4:"two",
+    8:"three", 16:"four",
+    32:"five", 64:"six",
+    128:"seven", 256:"eight",
+    512:"nine", 1024:"ten",
+    2048:"eleven"
+}
 
 const generateBoard = () => {
     for(let x=0; x < 4; x++){
@@ -13,15 +17,6 @@ const generateBoard = () => {
             document.getElementById(`row${x}`).innerHTML += `<div id=\"square${y}${x}\"></div>`
         }
     }
-}
-
-const tierDict = {
-    2:"one", 4:"two",
-    8:"three", 16:"four",
-    32:"five", 64:"six",
-    128:"seven", 256:"eight",
-    512:"nine", 1024:"ten",
-    2048:"eleven"
 }
 
 const updateBoard = () => {
@@ -56,8 +51,11 @@ const updateBoard = () => {
 
 document.onkeydown = (e) => {
     if (!gameLogic.checkPossible()){
-        console.log("game over!")
-        document.getElementById("gameOver").style.display = "block"
+        document.getElementById("gameOver").style.display = "block";
+        return
+    }
+    if (gameLogic.win) {
+        document.getElementById("gameWin").style.display = "block";
         return
     }
 
@@ -65,30 +63,38 @@ document.onkeydown = (e) => {
         case "ArrowUp":
             gameLogic.moveTiles("n")
             gameLogic.addNumb()
-            updateBoard()
+            gameLogic.saveProgress(updateBoard)
             break
 
         case "ArrowDown":
             gameLogic.moveTiles("s")
             gameLogic.addNumb()
-            updateBoard()
+            gameLogic.saveProgress(updateBoard)
             break
 
         case "ArrowLeft":
             gameLogic.moveTiles("w")
             gameLogic.addNumb()
-            updateBoard()
+            gameLogic.saveProgress(updateBoard)
             break
 
         case "ArrowRight":
             gameLogic.moveTiles("e")
             gameLogic.addNumb()
-            updateBoard()
+            gameLogic.saveProgress(updateBoard)
             break
-
 
     }
 }
 
-generateBoard()
-updateBoard()
+const startGame = () => {
+    gameLogic.startValues()
+    gameLogic.addNumb()
+    gameLogic.addNumb()
+    
+    generateBoard()
+    updateBoard()
+}
+
+// only starts after reading the save
+gameLogic.readProgress(startGame)
